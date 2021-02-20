@@ -1,6 +1,7 @@
 @isTest
-private class UpdateAccountCATest {
-    @isTest static void testTriggerUpdateAccountCA() {
+public class TR01_CalculMontantNetAmountTest {
+
+        @isTest static void testTriggerCalculMontantNetAmount() {
         Account acc1 = new Account(Name = 'Test Account 1');
         insert acc1;
 
@@ -16,7 +17,7 @@ private class UpdateAccountCATest {
         );
         Insert pbe;
 
-        Order o1 = new Order(AccountId = acc1.Id, Status = 'Draft', Pricebook2Id = pbe.Pricebook2Id, EffectiveDate = Date.today());
+        Order o1 = new Order(AccountId = acc1.Id, Status = 'Draft', Pricebook2Id = pbe.Pricebook2Id, EffectiveDate = Date.today(), ShipmentCost__c = 100);
         insert o1;
 
         OrderItem oi1 = new OrderItem (OrderId = o1.Id, PricebookEntryId = pbe.Id, Quantity=10, UnitPrice = 150);
@@ -33,10 +34,10 @@ private class UpdateAccountCATest {
         update updateOrder;
         Test.stoptest();
         
-        Account accResult = [SELECT Id, Chiffre_d_affaire__c 
-                             FROM Account
-                            WHERE Name = 'Test Account 1'];
+        Order orderResult = [SELECT Id, NetAmount__c
+                             FROM Order
+                            WHERE AccountId = :acc1.Id];
         
-        System.assertEquals(21500, accresult.Chiffre_d_affaire__c);
+        System.assertEquals(21400, orderResult.NetAmount__c);
     }
 }
