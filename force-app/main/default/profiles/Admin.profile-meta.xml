@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>CalculMontantTest</apexClass>
+        <apexClass>AP01_AccountUpdateCAWithPricebook</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>MyTeamOrdersController</apexClass>
+        <apexClass>AP01_AccountUpdateCAWithPricebookTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TestUpdateAccountCA</apexClass>
+        <apexClass>BA01_UpdateAllAccounts</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>UpdateAccounts</apexClass>
+        <apexClass>BA01_updateAllAccountsTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>UpdateAllAccounts</apexClass>
+        <apexClass>DataFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Scheduled01_UpdateCA</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Scheduled01_UpdateCATest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TR01_CalculMontantNetAmountTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TR02_UpdateAccountCATest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VF01_MyTeamOrdersController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VF01_MyTeamOrdersControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>

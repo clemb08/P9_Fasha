@@ -1,4 +1,4 @@
-public class AP01_AccountUpdate {
+public class AP01_AccountUpdateCAWithPricebook {
 
   public static void updateChiffreAffaire(Map<Id,Account> accounts) {
     
@@ -6,10 +6,11 @@ public class AP01_AccountUpdate {
       
       for(Id id : accounts.keyset()){
          Account account = accounts.get(id);
+         Decimal sum = 0;
          for(Order order : account.Orders){
-                 account.Chiffre_d_affaire__c += order.TotalAmount;                
+                 sum += order.TotalAmount;                
          }
-         
+         account.Chiffre_d_affaire__c = sum;
          accountsToUpdate.add(account);
        }
      
