@@ -1,7 +1,7 @@
 @isTest
 public class AP01_AccountUpdateCAWithPricebookTest {
 
-    @isTest static void updateChiffreAffaire() {
+    @isTest static void testUpdateChiffreAffaire() {
         
         DataFactory.createDataForPricebookFeatures();
        

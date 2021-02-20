@@ -13,11 +13,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BA01_updateAllAccountsTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DataFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Scheduled01_UpdateCA</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Scheduled01_UpdateCATest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -30,6 +38,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VF01_MyTeamOrdersController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VF01_MyTeamOrdersControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>

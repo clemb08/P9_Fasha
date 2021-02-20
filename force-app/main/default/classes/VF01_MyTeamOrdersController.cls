@@ -1,5 +1,6 @@
 public class VF01_MyTeamOrdersController {
-    public decimal SumOders{
+    
+    public decimal SumOrders{
         get{
 			AggregateResult groupedResults = [SELECT SUM(TotalAmount) total FROM Order];
 			return (decimal)groupedResults.get('total');
