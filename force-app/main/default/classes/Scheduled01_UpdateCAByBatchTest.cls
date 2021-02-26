@@ -1,5 +1,5 @@
 @isTest
-public class Scheduled01_UpdateCATest {
+public class Scheduled01_UpdateCAByBatchTest {
 
     @testSetup
     static void setup() {
