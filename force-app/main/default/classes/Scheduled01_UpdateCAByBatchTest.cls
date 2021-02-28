@@ -12,7 +12,7 @@ public class Scheduled01_UpdateCAByBatchTest {
     
      @isTest static void testScheduledUpdateCA() {
         Test.startTest();
-        Scheduled01_UpdateCA scheUpdateCA = new Scheduled01_UpdateCA(); 
+        Scheduled01_UpdateCAByBatch scheUpdateCA = new Scheduled01_UpdateCAByBatch(); 
 		String sch ='0 48 * * * ?'; 
 		System.schedule('Schedule to update Account CA', sch, scheUpdateCA);
         Test.stopTest();
