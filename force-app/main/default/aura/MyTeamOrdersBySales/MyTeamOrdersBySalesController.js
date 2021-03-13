@@ -12,7 +12,6 @@
             let data = response.getReturnValue();
             component.set("v.data", response.getReturnValue());
             let fuck = component.get("v.data");
-            console.log(fuck);
         });
         
         $A.enqueueAction(fetchData);
