@@ -3,8 +3,9 @@ public class AP01_AccountUpdateCAWithPricebookTest {
 
     @isTest static void testUpdateChiffreAffaire() {
         
-        DataFactory.createDataForPricebookFeatures();
+        DataFactory.createDataForPricebookFeatures(2);
        
+        //Update one Order
         Order order = [SELECT Id, Status FROM Order LIMIT 1];
         order.Status = 'Ordered';
         update order;
@@ -13,6 +14,7 @@ public class AP01_AccountUpdateCAWithPricebookTest {
                                   FROM Account 
                                   WHERE Id IN (SELECT AccountId FROM Order WHERE Status = 'Ordered')];
         
+        //Instantiate de Accounts Map
         Map<Id,Account> mapAccountIds = new Map<Id,Account>(accounts);
         
         Test.startTest();

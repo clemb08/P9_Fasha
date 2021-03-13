@@ -3,7 +3,7 @@ public class BA01_updateAllAccountsTest {
 
     @testSetup
     static void setup() {
-    	DataFactory.createDataForPricebookFeatures();
+    	DataFactory.createDataForPricebookFeatures(2);
         
         Order order = [SELECT Id, Status FROM Order LIMIT 1];
         order.Status = 'Ordered';

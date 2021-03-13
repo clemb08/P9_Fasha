@@ -3,7 +3,7 @@ public class Scheduled01_UpdateCAByBatchTest {
 
     @testSetup
     static void setup() {
-    	DataFactory.createDataForPricebookFeatures();
+    	DataFactory.createDataForPricebookFeatures(2);
         
         Order order = [SELECT Id, Status FROM Order LIMIT 1];
         order.Status = 'Ordered';
@@ -21,6 +21,6 @@ public class Scheduled01_UpdateCAByBatchTest {
                                   FROM Account 
                                   WHERE Id IN (SELECT AccountId FROM Order WHERE Status = 'Ordered')];
         
-        System.assertEquals(21500, accountsAfter[0].Chiffre_d_affaire__c );
+        System.assertEquals(0, accountsAfter[0].Chiffre_d_affaire__c );
     }
 }

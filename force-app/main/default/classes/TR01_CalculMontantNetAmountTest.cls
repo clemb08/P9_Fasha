@@ -1,43 +1,51 @@
 @isTest
 public class TR01_CalculMontantNetAmountTest {
 
-        @isTest static void testTriggerCalculMontantNetAmount() {
-        Account acc1 = new Account(Name = 'Test Account 1');
-        insert acc1;
-
-        Product2 pd1 = new Product2(Name = 'Chemise Verte longue XYX', Family = 'Chemise');
-        Insert pd1;
- 
-        //Create the PricebookEntry
-        PricebookEntry pbe = new PricebookEntry(
-            Pricebook2Id = Test.getStandardPricebookId(),
-            Product2Id = pd1.Id,
-            UnitPrice = 1020,
-            IsActive = true
-        );
-        Insert pbe;
-
-        Order o1 = new Order(AccountId = acc1.Id, Status = 'Draft', Pricebook2Id = pbe.Pricebook2Id, EffectiveDate = Date.today(), ShipmentCost__c = 100);
-        insert o1;
-
-        OrderItem oi1 = new OrderItem (OrderId = o1.Id, PricebookEntryId = pbe.Id, Quantity=10, UnitPrice = 150);
-        insert oi1;
-        OrderItem oi2 = new OrderItem (OrderId = o1.Id, PricebookEntryId = pbe.Id, Quantity=20, UnitPrice = 1000);
-        insert oi2;
-        
-        Order updateOrder = [SELECT Id, Status 
-                             FROM Order
-                          	 WHERE AccountId = :acc1.Id];
-        updateOrder.Status = 'Ordered';
-        
-        Test.startTest();
-        update updateOrder;
-        Test.stoptest();
-        
-        Order orderResult = [SELECT Id, NetAmount__c
-                             FROM Order
-                            WHERE AccountId = :acc1.Id];
-        
-        System.assertEquals(21400, orderResult.NetAmount__c);
-    }
+     @isTest static void testTriggerCalculMontantNetAmount() {
+            
+            DataFactory.createDataForPricebookFeatures(2);
+                
+            List<Order> updateOrder = [SELECT Id, Status 
+                                 FROM Order
+                                 WHERE Account.Name = 'Test Account 1'];
+            
+            for(Order order: updateOrder) {
+                order.Status = 'Ordered';
+            }
+            
+         	//Test trigger through update
+            Test.startTest();
+            update updateOrder;
+            Test.stoptest();
+            
+            List<Order> orderResult = [SELECT Id, NetAmount__c
+                                 FROM Order
+                                WHERE Account.Name = 'Test Account 1'];
+            
+            System.assertEquals(21500, orderResult[0].NetAmount__c);
+        }
+    
+    	//test with more than 200 orders
+        @isTest static void testTriggerCalculMontantNetAmountUpToLimits() {
+            
+            DataFactory.createDataForPricebookFeatures(201);
+                
+            List<Order> updateOrder = [SELECT Id, Status 
+                                 FROM Order
+                                 WHERE Account.Name = 'Test Account 1'];
+            
+            for(Order order: updateOrder) {
+                order.Status = 'Ordered';
+            }
+            
+            Test.startTest();
+            update updateOrder;
+            Test.stoptest();
+            
+            List<Order> orderResult = [SELECT Id, NetAmount__c
+                                 FROM Order
+                                WHERE Account.Name = 'Test Account 1'];
+            
+            System.assertEquals(21500, orderResult[0].NetAmount__c);
+        }
 }

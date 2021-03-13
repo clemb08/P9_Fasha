@@ -8,7 +8,9 @@ global class BA01_UpdateAllAccounts implements Database.Batchable<sObject>{
     }
      
     global void execute(Database.BatchableContext info, List<Account> scope){
+        //Instanciate a new Map with the scope variable
         Map<Id,Account> mapAccountIds = new Map<Id,Account>(scope);
+        //Use the Helper method containing the logic
         AP01_AccountUpdateCAWithPricebook.updateChiffreAffaire(mapAccountIds);
     }    
      
